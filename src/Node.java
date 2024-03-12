@@ -1,24 +1,28 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Node {
     int data;
-    ArrayList<Node> children;
-    String color;
+    ArrayList<int[]> children;
     Node parent;
-    int time;
+    int distance;
 
     Node(int data) {
         this.data = data;
-        this.color = "white";
         this.children = new ArrayList<>();
+        distance = Integer.MAX_VALUE;
         parent = null;
-        time = 0;
     }
-    Node(int data, ArrayList<Node> children) {
+    Node(int data, ArrayList<int[]> children) {
         this.data = data;
-        this.color = "white";
         this.children = children;
         parent = null;
-        time = 0;
+    }
+
+    public void addChild(int node, int weight) {
+        int[] childAndWeight = new int[2];
+        childAndWeight[0] = node;
+        childAndWeight[1] = weight;
+        children.add(childAndWeight);
     }
 }
