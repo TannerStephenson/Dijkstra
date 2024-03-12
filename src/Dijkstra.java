@@ -1,17 +1,27 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Dijkstra {
-    private static ArrayList<Node> nodeMap = new ArrayList<>();
+    private static HashMap<Integer, Node> nodeMap = new HashMap<>();
 
     public static void main(String[] args) {
         //String fileName = args[0];
         String fileName = "data.txt";
         //int selectedNode = Integer.parseInt(args[1]);
+        int selectedNode = 0;
         readFile(fileName);
+        dijkstra(nodeMap, nodeMap.get(selectedNode));
+    }
 
+    public static void dijkstra(HashMap<Integer, Node> nodeHashMap, Node node) {
+        for(int i = 0; i < nodeHashMap.size(); i++) {
+            nodeHashMap.get(i).setDistance(Integer.MAX_VALUE);
+        }
+        node.setDistance(0);
+        
     }
 
     /*public static void heapSort(int[] input) {
@@ -60,7 +70,7 @@ public class Dijkstra {
 
     public static void nextHopNeighbor(Node node, int neighbor, int weight) {
         node.addChild(neighbor, weight);
-        nodeMap.add(node);
+        nodeMap.put(node.data, node);
 
     }
 
@@ -87,6 +97,8 @@ public class Dijkstra {
                         String[] neighbor = pieces[1].split(",");
                         nextHopNeighbor(node, Integer.parseInt(neighbor[0]), Integer.parseInt(neighbor[1]));
                     }
+                } else {
+                    nodeMap.put(node.data, node);
                 }
             }
         } catch (FileNotFoundException e) {
