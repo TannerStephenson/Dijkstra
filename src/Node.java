@@ -6,6 +6,7 @@ public class Node {
     HashMap<Integer, Integer> children;
     Node parent;
     int distance;
+    int index;
 
     Node(int data) {
         this.data = data;
